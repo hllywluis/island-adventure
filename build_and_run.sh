@@ -1,8 +1,5 @@
 #!/usr/bin/env zsh
 
-# Set for macOS
-PLAYDATE_SDK_PATH="$HOME/Developer/PlaydateSDK"
-
 # Check for color by variable and tput command
 if [[ -z $NOCOLOR && -n $(command -v tput) ]]; then
     RED=$(tput setaf 1)

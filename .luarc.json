@@ -16,6 +16,6 @@
     "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
     "runtime.version": "Lua 5.4",
     "workspace.library": [
-        "~/Developer/playdate-luacats"
+        "$HOME/Developer/playdate-luacats"
     ]
 }
