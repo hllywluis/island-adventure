@@ -122,7 +122,7 @@ function build_pdx() {
 function run_pdx() {
     if [[ -d "${PDX_PATH}" ]]; then
         log "Running PDX with Simulator..."
-        $PLAYDATE_SDK_PATH/bin/PlaydateSimulator "${PDX_PATH}"
+        $PLAYDATE_SDK_PATH/bin/Playdate\ Simulator.app/Contents/MacOS/Playdate\ Simulator "${PDX_PATH}"
     else
         log_err "PDX doesn't exist! Please 'build' the project first!"
     fi
