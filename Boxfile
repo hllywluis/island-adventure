@@ -1,0 +1,8 @@
+{
+    "toyboxes": {
+        "github.com/PizzaFuel/pdDialogue": "main"
+    },
+    "installed": {
+        "github.com/PizzaFuel/pdDialogue": "main@e0dfe61b94baba9b0934c8ca65f500fdd02b61b8"
+    }
+}

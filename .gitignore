@@ -44,3 +44,6 @@ luac.out
 
 # Build folder
 build/
+
+# Toyboxes
+toyboxes/
