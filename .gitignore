@@ -47,3 +47,6 @@ build/
 
 # Toyboxes
 toyboxes/
+
+# macOS
+.DS_Store
