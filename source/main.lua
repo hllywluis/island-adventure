@@ -1,13 +1,18 @@
-import "CoreLibs/object"
-import "CoreLibs/graphics"
-import "CoreLibs/sprites"
+import 'libraries/noble/Noble'
 
-import "../toyboxes/toyboxes.lua"
-import "menus/main_menu"
+import 'utilities/Utilities'
 
-MainMenu(200, 120, 400, 240)
+import 'scenes/ExampleScene'
+import 'scenes/ExampleScene2'
 
-function playdate.update()
-    playdate.graphics.clear()
-    playdate.graphics.sprite.update()
-end
+Noble.Settings.setup({
+	Difficulty = "Medium"
+})
+
+Noble.GameData.setup({
+	Score = 0
+})
+
+Noble.showFPS = true
+
+Noble.new(ExampleScene)
