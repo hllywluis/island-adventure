@@ -50,3 +50,6 @@ toyboxes/
 
 # macOS
 .DS_Store
+
+# Windows
+.sentry-native/
