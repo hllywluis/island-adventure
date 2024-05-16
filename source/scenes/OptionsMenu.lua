@@ -1,36 +1,11 @@
-TitleScreen = {}
-class("TitleScreen").extends(NobleScene)
+OptionsMenu = {}
+class("OptionsMenu").extends(NobleScene)
 
-local scene = TitleScreen
-
-function scene:setValues()
-    self.background = Graphics.image.new("assets/images/background1")
-
-    self.color1 = Graphics.kColorBlack
-    self.color2 = Graphics.kColorWhite
-
-    self.menu = nil
-    self.sequence = nil
-
-    self.menuX = 127
-
-    self.menuYFrom = -50
-    self.menuY = 120
-    self.menuYTo = 240
-end
+local scene = OptionsMenu
 
 function scene:init()
-    scene.super.init(self)
-
+    OptionsMenu.super.init(self)
     self:setValues()
-
-    self.menu = Noble.Menu.new(false, Noble.Text.ALIGN_LEFT, false, self.color2, 4, 6, 0, Noble.Text.FONT_LARGE)
-
-    self:setupMenu(self.menu)
-
-    self.music = playdate.sound.fileplayer.new("assets/sounds/neon")
-
-    local crankTick = 0
 
     self.inputHandler = {
         upButtonDown = function()
@@ -51,17 +26,50 @@ function scene:init()
         end,
         AButtonDown = function()
             self.menu:click()
+        end,
+        BButtonDown = function()
+            Noble.transition(TitleScreen)
         end
     }
+end
+
+function scene:setValues()
+    self.background = Graphics.image.new("assets/images/background2")
+
+    self.color1 = Graphics.kColorBlack
+    self.color2 = Graphics.kColorWhite
+
+    self.menu = Noble.Menu.new(false, Noble.Text.ALIGN_LEFT, false, self.color2, 4, 6, 0, Noble.Text.FONT_LARGE)
+
+    self.menuX = 127
+
+    self.menuYFrom = -50
+    self.menuY = 120
+    self.menuYTo = 240
+
+    self.menu:addItem("Sound", function()
+        -- Add your logic to toggle sound here
+        print("Sound toggled")
+    end)
+    self.menu:addItem("Difficulty", function()
+        -- Add your logic to change difficulty here
+        print("Difficulty changed")
+    end)
+    self.menu:addItem("Back", function()
+        -- Add your logic to go back to the previous scene
+        Noble.transition(TitleScreen)
+    end)
 end
 
 function scene:enter()
     scene.super.enter(self)
     self.sequence = Sequence.new():from(self.menuYFrom):to(self.menuY, 1.5, Ease.outBounce):start()
-    if not IS_MUSIC_PLAYING then
-        self.music:play(0)
-        IS_MUSIC_PLAYING = true
-    end
+    self.menu:activate()
+end
+
+function scene:exit()
+    scene.super.exit(self)
+    self.menu:deactivate()
 end
 
 function scene:update()
@@ -70,26 +78,12 @@ function scene:update()
     Graphics.setColor(self.color1)
     Graphics.setDitherPattern(0.2, Graphics.image.kDitherTypeScreen)
     Graphics.fillRoundRect(self.menuX, self.sequence:get() or self.menuY, 145, 75, 15)
-    
+
     self.menu:draw(self.menuX + 15, self.sequence:get() + 8 or self.menuY + 8)
 
     Graphics.setColor(Graphics.kColorBlack)
 end
 
 function scene:drawBackground()
-    scene.super.drawBackground(self)
     self.background:draw(0, 0)
-end
-
-function scene:start()
-    scene.super.start(self)
-    self.menu:activate()
-end
-
-function scene:setupMenu(__menu)
-    __menu:addItem("Continue")
-    __menu:addItem("New Game")
-    __menu:addItem("Options", function()
-        Noble.transition(OptionsMenu)
-    end)
 end

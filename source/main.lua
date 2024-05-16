@@ -5,6 +5,9 @@ import 'utilities/Utilities'
 import 'scenes/ExampleScene'
 import 'scenes/ExampleScene2'
 import "scenes/TitleScreen"
+import "scenes/OptionsMenu"
+
+IS_MUSIC_PLAYING = false
 
 Noble.Settings.setup({
 	Difficulty = "Medium",
@@ -15,6 +18,6 @@ Noble.GameData.setup({
 	Score = 0
 })
 
-Noble.showFPS = true
+Noble.showFPS = false
 
 Noble.new(TitleScreen)
