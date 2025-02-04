@@ -2,8 +2,6 @@ import 'libraries/noble/Noble'
 
 import 'utilities/Utilities'
 
-import 'scenes/ExampleScene'
-import 'scenes/ExampleScene2'
 import "scenes/TitleScreen"
 import "scenes/OptionsMenu"
 
